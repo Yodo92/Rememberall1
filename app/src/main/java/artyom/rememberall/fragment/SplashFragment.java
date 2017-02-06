@@ -1,4 +1,4 @@
-package artyom.rememberall;
+package artyom.rememberall.fragment;
 
 
 import android.os.AsyncTask;
@@ -9,6 +9,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import java.util.concurrent.TimeUnit;
+
+import artyom.rememberall.R;
 
 
 /**
@@ -29,20 +31,23 @@ public class SplashFragment extends Fragment {
         splashTask.execute();// Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_splash, container, false);
     }
-class SplashTask extends AsyncTask<Void, Void,Void>{
+
+    class SplashTask extends AsyncTask<Void, Void, Void> {
 
 
-    @Override
-    protected Void doInBackground(Void... params) {
-        try {
-            TimeUnit.SECONDS.sleep(2);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        @Override
+        protected Void doInBackground(Void... params) {
+            try {
+                TimeUnit.SECONDS.sleep(2);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
 
+            if (getActivity() != null) {
+                getActivity().getFragmentManager().popBackStack();
+            }
+                return null;
+            }
 
-        getActivity().getFragmentManager().popBackStack();
-        return null;
     }
-}
 }
