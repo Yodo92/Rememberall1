@@ -4,12 +4,13 @@
     android:layout_height="match_parent"
     tools:context="artyom.rememberall.fragment.DoneTaskFragment">
 
+    <android.support.v7.widget.RecyclerView
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Done tasks"
-        android:layout_gravity="center"
-        android:textSize="35sp"/>
-
+        android:id="@+id/rvDoneTasks"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:scrollbars="vertical"
+        android:clipToPadding="false"
+        android:paddingBottom="88dp"
+        />
 </FrameLayout>

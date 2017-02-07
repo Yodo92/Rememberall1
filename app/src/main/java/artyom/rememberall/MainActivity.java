@@ -16,12 +16,17 @@ import android.widget.Toast;
 
 import artyom.rememberall.adapter.TabAdapter;
 import artyom.rememberall.dialog.AddingTaskDialogFragment;
+import artyom.rememberall.fragment.CurrentTaskFragment;
+import artyom.rememberall.fragment.DoneTaskFragment;
 import artyom.rememberall.fragment.SplashFragment;
+import artyom.rememberall.model.ModelTask;
 
 public class MainActivity extends AppCompatActivity implements AddingTaskDialogFragment.AddingTaskListener{
     FragmentManager fragmentManager;
     PreferenceHelper preferenceHelper;
-
+    TabAdapter tabAdapter;
+    CurrentTaskFragment currentTaskFragment;
+    DoneTaskFragment doneTaskFragment;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,7 +46,7 @@ public class MainActivity extends AppCompatActivity implements AddingTaskDialogF
         });
         fragmentManager = getFragmentManager();
         runSplash();
-setUI();
+          setUI();
     }
 
     @Override
@@ -96,7 +101,7 @@ setUI();
             tabLayout.addTab(tabLayout.newTab().setText(R.string.done_task));
 
         final ViewPager viewPager = (ViewPager) findViewById(R.id.pager);
-        TabAdapter tabAdapter = new TabAdapter(fragmentManager, 2);
+         tabAdapter = new TabAdapter(fragmentManager, 2);
 
 viewPager.setAdapter(tabAdapter);
 viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
@@ -116,8 +121,11 @@ tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
 
     }
 
-
 });
+        currentTaskFragment = (CurrentTaskFragment) tabAdapter.getItem(TabAdapter.CURRENT_TASK_FRAGMENT_POSITION);
+        doneTaskFragment = (DoneTaskFragment) tabAdapter.getItem(TabAdapter.DONE_TASK_FRAGMENT_POSITION);
+
+
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -130,8 +138,8 @@ tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
 
 
     @Override
-    public void onTaskAdded() {
-        Toast.makeText(this, "Task added.", Toast.LENGTH_LONG).show();
+    public void onTaskAdded(ModelTask newTask) {
+        currentTaskFragment.addTask(newTask);
     }
 
     @Override
