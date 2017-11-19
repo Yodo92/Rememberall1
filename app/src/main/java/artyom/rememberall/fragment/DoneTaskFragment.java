@@ -16,7 +16,7 @@ import artyom.rememberall.R;
  * A simple {@link Fragment} subclass.
  */
 public class DoneTaskFragment extends Fragment {
-RecyclerView rvDoneTasks;
+    RecyclerView rvDoneTasks;
     RecyclerView.LayoutManager layoutManager;
 
     public DoneTaskFragment() {

@@ -46,8 +46,8 @@ public class SplashFragment extends Fragment {
             if (getActivity() != null) {
                 getActivity().getFragmentManager().popBackStack();
             }
-                return null;
-            }
+            return null;
+        }
 
     }
 }

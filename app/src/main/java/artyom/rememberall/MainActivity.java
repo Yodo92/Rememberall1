@@ -21,12 +21,13 @@ import artyom.rememberall.fragment.DoneTaskFragment;
 import artyom.rememberall.fragment.SplashFragment;
 import artyom.rememberall.model.ModelTask;
 
-public class MainActivity extends AppCompatActivity implements AddingTaskDialogFragment.AddingTaskListener{
+public class MainActivity extends AppCompatActivity implements AddingTaskDialogFragment.AddingTaskListener {
     FragmentManager fragmentManager;
     PreferenceHelper preferenceHelper;
     TabAdapter tabAdapter;
     CurrentTaskFragment currentTaskFragment;
     DoneTaskFragment doneTaskFragment;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,7 +47,7 @@ public class MainActivity extends AppCompatActivity implements AddingTaskDialogF
         });
         fragmentManager = getFragmentManager();
         runSplash();
-          setUI();
+        setUI();
     }
 
     @Override
@@ -90,38 +91,38 @@ public class MainActivity extends AppCompatActivity implements AddingTaskDialogF
     private void setUI() {
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        if (toolbar !=null) {
+        if (toolbar != null) {
             toolbar.setTitleTextColor(getResources().getColor(R.color.white));
             setSupportActionBar(toolbar);
 
         }
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_layout);
-            tabLayout.addTab(tabLayout.newTab().setText(R.string.current_task));
-            tabLayout.addTab(tabLayout.newTab().setText(R.string.done_task));
+        tabLayout.addTab(tabLayout.newTab().setText(R.string.current_task));
+        tabLayout.addTab(tabLayout.newTab().setText(R.string.done_task));
 
         final ViewPager viewPager = (ViewPager) findViewById(R.id.pager);
-         tabAdapter = new TabAdapter(fragmentManager, 2);
+        tabAdapter = new TabAdapter(fragmentManager, 2);
 
-viewPager.setAdapter(tabAdapter);
-viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
-tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
-    @Override
-    public void onTabSelected(TabLayout.Tab tab) {
-        viewPager.setCurrentItem(tab.getPosition());
-    }
+        viewPager.setAdapter(tabAdapter);
+        viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+        tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                viewPager.setCurrentItem(tab.getPosition());
+            }
 
-    @Override
-    public void onTabUnselected(TabLayout.Tab tab) {
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
 
-    }
+            }
 
-    @Override
-    public void onTabReselected(TabLayout.Tab tab) {
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
 
-    }
+            }
 
-});
+        });
         currentTaskFragment = (CurrentTaskFragment) tabAdapter.getItem(TabAdapter.CURRENT_TASK_FRAGMENT_POSITION);
         doneTaskFragment = (DoneTaskFragment) tabAdapter.getItem(TabAdapter.DONE_TASK_FRAGMENT_POSITION);
 
@@ -144,6 +145,6 @@ tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
 
     @Override
     public void onTaskAddingCancel() {
-Toast.makeText(this, "Task adding cancel", Toast.LENGTH_LONG).show();
+        Toast.makeText(this, "Task adding cancel", Toast.LENGTH_LONG).show();
     }
 }

@@ -19,9 +19,10 @@ import artyom.rememberall.model.ModelTask;
  */
 public class CurrentTaskFragment extends Fragment {
 
-private RecyclerView rvCurrentTask;
+    private RecyclerView rvCurrentTask;
     private RecyclerView.LayoutManager layoutManager;
     private CurrentTasksAdapter adapter;
+
     public CurrentTaskFragment() {
         // Required empty public constructor
     }
@@ -30,7 +31,6 @@ private RecyclerView rvCurrentTask;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
 
 
         View rootView = inflater.inflate(R.layout.fragment_current_task, container, false);
@@ -42,23 +42,24 @@ private RecyclerView rvCurrentTask;
         rvCurrentTask.setAdapter(adapter);
         return rootView;
     }
-public void addTask(ModelTask newTask) {
-    int position = -1;
-    for (int i =  0; i<adapter.getItemCount();i ++) {
-        if (adapter.getItem(i).isTask()) {
-            ModelTask task = (ModelTask) adapter.getItem(i);
-            if (newTask.getDate()<task.getDate() ) {
-                position = i;
-                break;
+
+    public void addTask(ModelTask newTask) {
+        int position = -1;
+        for (int i = 0; i < adapter.getItemCount(); i++) {
+            if (adapter.getItem(i).isTask()) {
+                ModelTask task = (ModelTask) adapter.getItem(i);
+                if (newTask.getDate() < task.getDate()) {
+                    position = i;
+                    break;
+                }
             }
         }
-    }
-    if (position != -1) {
-        adapter.addItem(position, newTask);
+        if (position != -1) {
+            adapter.addItem(position, newTask);
 
-    } else {
-        adapter.addItem(newTask);
-    }
+        } else {
+            adapter.addItem(newTask);
+        }
 
-}
+    }
 }

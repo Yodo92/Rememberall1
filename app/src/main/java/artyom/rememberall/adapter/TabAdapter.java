@@ -1,7 +1,9 @@
 package artyom.rememberall.adapter;
+
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.support.v13.app.FragmentStatePagerAdapter;
+
 import artyom.rememberall.fragment.CurrentTaskFragment;
 import artyom.rememberall.fragment.DoneTaskFragment;
 
@@ -31,9 +33,9 @@ public class TabAdapter extends FragmentStatePagerAdapter {
         switch (i) {
 
             case 0:
-            return  currentTaskFragment;
+                return currentTaskFragment;
             case 1:
-                return  doneTaskFragment;
+                return doneTaskFragment;
             default:
                 return null;
         }

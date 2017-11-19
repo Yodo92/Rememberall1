@@ -31,12 +31,13 @@ public class CurrentTasksAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         return items.get(position);
 
     }
-    public void  addItem(Item item) {
-        items.add(item);
-        notifyItemInserted(getItemCount()- 1);
-            }
 
-    public void addItem(int location, Item item){
+    public void addItem(Item item) {
+        items.add(item);
+        notifyItemInserted(getItemCount() - 1);
+    }
+
+    public void addItem(int location, Item item) {
         items.add(location, item);
         notifyItemInserted(location);
     }
@@ -48,10 +49,10 @@ public class CurrentTasksAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         switch (viewType) {
             case TYPE_TASK:
                 View v = LayoutInflater.from(viewGroup.getContext())
-                        .inflate(R.layout.model_task, viewGroup ,false);
+                        .inflate(R.layout.model_task, viewGroup, false);
                 TextView title = (TextView) v.findViewById(R.id.tvTaskTitle);
                 TextView date = (TextView) v.findViewById(R.id.tvTaskDate);
-            return new TaskViewHolder(v, title, date);
+                return new TaskViewHolder(v, title, date);
             default:
                 return null;
         }
@@ -61,7 +62,7 @@ public class CurrentTasksAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int position) {
-Item item = items.get(position);
+        Item item = items.get(position);
         if (item.isTask()) {
             viewHolder.itemView.setEnabled(true);
             ModelTask task = (ModelTask) item;
@@ -84,18 +85,18 @@ Item item = items.get(position);
         if (getItem(position).isTask()) {
 
             return TYPE_TASK;
-        } else  {
+        } else {
 
             return TYPE_SEPARATOR;
         }
     }
 
     private class TaskViewHolder extends RecyclerView.ViewHolder {
-TextView title;
+        TextView title;
         TextView date;
 
 
-        public TaskViewHolder(View itemView, TextView title,TextView date) {
+        public TaskViewHolder(View itemView, TextView title, TextView date) {
             super(itemView);
             this.title = title;
             this.date = date;
